@@ -39,7 +39,13 @@ public class AnalyzeService {
                     .collect(Collectors.toList());
 
             if (jdSkills.isEmpty()) {
-                throw new RuntimeException("No recognizable skills found in JD.");
+                return new AnalyzeResponse(
+                        "No specific technical skills detected in the job description. Please provide a more detailed JD.",
+                        0.0,
+                        List.of(),
+                        List.of(),
+                        "Please include specific technologies like Java, Python, SQL, etc. for better analysis."
+                );
             }
 
             List<String> matchedSkills = jdSkills.stream()
